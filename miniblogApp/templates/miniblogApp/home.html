@@ -1,0 +1,23 @@
+{% extends "miniblogApp/base.html" %}
+{% load static %}
+{% block msg %}
+{% endblock msg %}
+{% block sidebar %}
+{% endblock sidebar %}
+{% block content %}
+    <div class="col-md-8 mt-3">
+        <h1>Home Page</h1>
+    </div>
+    {% if posts %}
+        {% for post in posts %}
+            <div class="jumbotron jumbo-color jumbotron-fluid mt-5">
+                <div class="container">
+                    <h1 class="display-4">{{post.title}}</h1>
+                    <p class="lead">{{post.desc}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h1 class="alert alert-danger">No Post to Display</h1>
+    {% endif %}
+{% endblock content %}

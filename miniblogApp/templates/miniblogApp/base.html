@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'miniblogApp/css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{% static 'miniblogApp/css/blog.css'%}">
+</head>
+<body>
+{% include "miniblogApp/navbar.html" %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            {% block msg %}
+            {% endblock msg %}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+<div class="row">
+{% block sidebar %}
+{% endblock sidebar %}
+</div>
+</div>
+<div class="container">
+<div class="row">
+{% block content %}
+{% endblock content %}
+</div>
+</div>
+
+
+<script src="{% static 'miniblogApp/js/jquery.js' %}"></script>
+<script src="{% static 'miniblogApp/js/popper.js' %}"></script>
+<script src="{% static 'miniblogApp/js/bootstrap.js' %}"></script>
+</body>
+</html>

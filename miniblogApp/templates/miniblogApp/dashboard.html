@@ -1,0 +1,43 @@
+{% extends "miniblogApp/base.html" %}
+{% load static %}
+{% block msg %}
+{% endblock msg %}
+
+{% block sidebar %}
+{% endblock sidebar %}
+
+{% block content %}
+
+<div class="col-md-12 mt-3">
+    <form action="{% url 'addpost' %}" method="post">
+        {% csrf_token%}
+        <input type="submit" value="Add Post" class="btn btn-success btn-lg">
+    </form>
+     <h1 class="text-center bg-dark text-white mt-4">All Blog POST</h1>
+    {% if posts %}
+    <table class="table table-bordered table-hover table-striped  table-dark text-white mt-3">
+        <thead class="text-center text-uppercase ">
+            <th>Title</th>
+            <th>Description</th>
+            <th>Action</th>
+        </thead>
+        <tbody class="text-center text-white">
+             {% for post in posts %}
+             <tr>
+                 <td width="20%">{{post.title}}</td>
+                 <td>{{post.desc}}</td>
+                 <td width="20%" >
+                     <a href="{% url "updatepost" post.id %}" class="btn btn-warning btn-sm d-inline mt-1 pt-1">Edit</a>&nbsp;
+                     {% if perms.miniblogApp.delete_post %}
+                     <a href="{% url 'deletepost' post.id %}"class="btn btn-danger btn-sm d-inline mt-1 pt-1">Delete</a>
+                     {% endif %}
+                 </td>
+             </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+    {%else%}
+    <h1 class="display-3 alert alert-danger">No Data to Display</h1>
+    {% endif %}
+</div>
+{% endblock content %}
